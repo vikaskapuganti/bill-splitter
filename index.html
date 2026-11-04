@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bill Splitter</title>
+  <meta name="description" content="Split a bill equally, or settle up trip expenses and see exactly who pays whom.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Bill Splitter</h1>
+    <p class="tagline">Split a restaurant bill in seconds, or settle up a trip and see exactly who pays whom.</p>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab active" role="tab" aria-selected="true" data-tab="equal">Split a bill</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="trip">Settle a trip</button>
+  </nav>
+
+  <main>
+    <!-- Equal split -->
+    <section id="equal" class="panel active">
+      <label class="field">Bill amount (Rs.)
+        <input id="bill" type="number" min="0" step="0.01" inputmode="decimal" placeholder="1850">
+      </label>
+      <div class="grid-2">
+        <label class="field">Number of people
+          <input id="people" type="number" min="1" step="1" inputmode="numeric" value="4">
+        </label>
+        <label class="field">Tip or service charge (%)
+          <input id="tip" type="number" min="0" step="0.5" inputmode="decimal" value="0">
+        </label>
+      </div>
+      <label class="check"><input id="roundup" type="checkbox"> Round up each share to the next rupee</label>
+
+      <div class="result">
+        <div>
+          <span class="result-label">Each person pays</span>
+          <span class="result-value" id="each">Rs. 0</span>
+        </div>
+        <div>
+          <span class="result-label">Total with tip</span>
+          <span class="result-value small" id="total">Rs. 0</span>
+        </div>
+      </div>
+      <button class="btn-primary btn-copy" id="copy-equal">Copy for WhatsApp</button>
+      <p class="copied" id="copied-equal"></p>
+    </section>
+
+    <!-- Trip settle-up -->
+    <section id="trip" class="panel">
+      <p class="hint">Add everyone in the group and how much each person paid. Put 0 if they paid nothing. The total is shared equally.</p>
+      <div class="table-head people">
+        <span>Name</span><span>Paid (Rs.)</span><span></span>
+      </div>
+      <div id="person-list"></div>
+      <button class="btn-secondary" id="add-person">+ Add person</button>
+
+      <div class="result">
+        <div>
+          <span class="result-label">Total spent</span>
+          <span class="result-value small" id="trip-total">Rs. 0</span>
+        </div>
+        <div>
+          <span class="result-label">Each person's share</span>
+          <span class="result-value small" id="trip-share">Rs. 0</span>
+        </div>
+      </div>
+
+      <ul class="settle" id="settle"></ul>
+      <button class="btn-primary btn-copy" id="copy-trip">Copy for WhatsApp</button>
+      <p class="copied" id="copied-trip"></p>
+    </section>
+
+    <button class="btn-link" id="reset">Clear everything</button>
+  </main>
+
+  <footer>
+    <p>Built by <a href="https://github.com/vikaskapuganti">Vikas Kapuganti</a>.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
